@@ -1,0 +1,25 @@
+const add = triggerGui.getElementsByClassName("add")[0];
+add.addEventListener("click", async () => {
+  await new Promise((r) => setTimeout(r, 500));
+  let e = document.createElement("trigger-config");
+  e.classList.add("triggerConfig");
+  triggerGui.appendChild(e);
+});
+
+getTriggerConfiguration(() => {
+  const triggerConfig = triggerGui.getElementsByClassName("triggerConfig");
+  let configData = [];
+  let text = "";
+  for (let config of triggerConfig) {
+    let genC = config.component.getTriggerConfiguration();
+    text += " or " + genC.text;
+    configData.push(genC);
+  }
+
+  text = "( " + text.substring(4) + " )";
+
+  return {
+    text: text,
+    data: configData,
+  };
+});
