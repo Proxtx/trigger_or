@@ -6,12 +6,12 @@ add.addEventListener("click", async () => {
   triggerGui.appendChild(e);
 });
 
-getTriggerConfiguration(() => {
+getTriggerConfiguration(async () => {
   const triggerConfig = triggerGui.getElementsByClassName("triggerConfig");
   let configData = [];
   let text = "";
   for (let config of triggerConfig) {
-    let genC = config.component.getTriggerConfiguration();
+    let genC = await config.component.getTriggerConfiguration();
     text += " or " + genC.text;
     configData.push(genC);
   }
